@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>VaakMitra — Malayalam OTT</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #0a0a0f;
+      --nav: #0d0d14;
+      --card: #12121a;
+      --card2: #1a1a26;
+      --border: rgba(255, 255, 255, 0.07);
+      --border2: rgba(255, 255, 255, 0.13);
+      --gold: #e8b84b;
+      --gold2: #ffd077;
+      --teal: #00c9a7;
+      --red: #e63946;
+      --text: #f0f0f8;
+      --muted: #7a7a99;
+      --r: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--nav);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 28px;
+      height: 62px
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0
+    }
+
+    .nav-logo span {
+      color: var(--teal)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0
+    }
+
+    .nav-links a {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .15s, background .15s
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--card2)
+    }
+
+    .search-wrap {
+      flex: 1;
+      max-width: 460px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card);
+      border: 0.5px solid var(--border2);
+      border-radius: 8px;
+      padding: 0 14px;
+      height: 38px;
+      transition: border-color .2s
+    }
+
+    .search-wrap:focus-within {
+      border-color: var(--gold)
+    }
+
+    .s-icon {
+      width: 15px;
+      height: 15px;
+      opacity: .45;
+      flex-shrink: 0
+    }
+
+    #search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem
+    }
+
+    #search-input::placeholder {
+      color: var(--muted)
+    }
+
+    .lang-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card2);
+      border: 0.5px solid var(--border2);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: auto
+    }
+
+    .lang-pill b {
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .hero {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0f0f20 0%, #1a0a2e 40%, #0a1520 100%)
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .05;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255, 255, 255, .2) 40px, rgba(255, 255, 255, .2) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 255, 255, .2) 40px, rgba(255, 255, 255, .2) 41px)
+    }
+
+    .hero-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 130px;
+      background: linear-gradient(to bottom, transparent, var(--bg))
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 2;
+      padding: 0 32px 32px;
+      max-width: 560px
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(232, 184, 75, .12);
+      border: 0.5px solid rgba(232, 184, 75, .35);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      letter-spacing: 1px;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 8px
+    }
+
+    .hero-sub {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .section {
+      padding: 24px 28px 8px
+    }
+
+    .sec-hdr {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .sec-title {
+      font-size: 1rem;
+      font-weight: 600
+    }
+
+    .sec-count {
+      font-size: 0.75rem;
+      color: var(--muted)
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px
+    }
+
+    .f-btn {
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 0.5px solid var(--border2);
+      background: none;
+      color: var(--muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all .15s
+    }
+
+    .f-btn.on {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0a0a0f;
+      font-weight: 600
+    }
+
+    .f-btn:hover:not(.on) {
+      color: var(--text)
+    }
+
+    #movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 16px;
+      padding-bottom: 48px
+    }
+
+    .m-card {
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .18s, border-color .18s;
+      position: relative
+    }
+
+    .m-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--border2)
+    }
+
+    .m-thumb {
+      width: 100%;
+      aspect-ratio: 2/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.8rem;
+      position: relative
+    }
+
+    .ml-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--teal);
+      color: #001a14;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 4px
+    }
+
+    .m-info {
+      padding: 10px 12px 13px
+    }
+
+    .m-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px
+    }
+
+    .m-meta {
+      display: flex;
+      gap: 7px;
+      align-items: center
+    }
+
+    .m-genre,
+    .m-year {
+      font-size: 0.72rem;
+      color: var(--muted)
+    }
+
+    .m-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0
+    }
+
+    .no-results {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 56px 0;
+      color: var(--muted);
+      font-size: 0.88rem
+    }
+
+    .modal-wrap {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, .85);
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .modal-wrap.open {
+      display: flex
+    }
+
+    .modal {
+      background: var(--card);
+      border: 0.5px solid var(--border2);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 860px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative
+    }
+
+    .m-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--card2);
+      border: 0.5px solid var(--border2);
+      color: var(--muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all .15s;
+      line-height: 1
+    }
+
+    .m-close:hover {
+      background: var(--border2);
+      color: var(--text)
+    }
+
+    .player-sec {
+      background: #000;
+      border-radius: 14px 14px 0 0;
+      overflow: hidden
+    }
+
+    video#player {
+      width: 100%;
+      display: block;
+      max-height: 380px;
+      object-fit: contain;
+      background: #000
+    }
+
+    .p-controls {
+      background: #0a0a0f;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .prog-row {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    #prog-bar {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: var(--border2);
+      border-radius: 2px;
+      cursor: pointer;
+      outline: none
+    }
+
+    #prog-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer
+    }
+
+    #prog-bar::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      border: none
+    }
+
+    .time-lbl {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 80px
+    }
+
+    .btns-row {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .c-btn {
+      background: var(--card2);
+      border: 0.5px solid var(--border2);
+      border-radius: 7px;
+      color: var(--text);
+      font-size: 14px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+      flex-shrink: 0
+    }
+
+    .c-btn:hover {
+      background: var(--border2);
+      border-color: var(--gold)
+    }
+
+    .vol-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-left: 4px
+    }
+
+    #vol-range {
+      width: 70px;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: var(--border2);
+      border-radius: 2px;
+      cursor: pointer;
+      outline: none
+    }
+
+    #vol-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+      cursor: pointer
+    }
+
+    .ver-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-left: auto
+    }
+
+    .v-btn {
+      padding: 6px 18px;
+      border-radius: 6px;
+      border: 0.5px solid var(--border2);
+      background: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .15s
+    }
+
+    .v-btn.act {
+      border-color: var(--gold);
+      color: var(--gold2)
+    }
+
+    .v-btn:disabled {
+      opacity: .3;
+      cursor: not-allowed
+    }
+
+    .v-btn:hover:not(:disabled):not(.act) {
+      color: var(--text)
+    }
+
+    .modal-body {
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .m-hdr {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px
+    }
+
+    .m-hdr-thumb {
+      width: 56px;
+      height: 80px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      border: 0.5px solid var(--border2)
+    }
+
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: .5px;
+      color: #fff;
+      margin-bottom: 4px
+    }
+
+    .modal-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .modal-meta span {
+      font-size: 0.78rem;
+      color: var(--muted)
+    }
+
+    .modal-meta b {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    .modal-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .trans-btn {
+      padding: 12px 20px;
+      border-radius: var(--r);
+      background: var(--gold);
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #0a0a0f;
+      cursor: pointer;
+      transition: opacity .18s, transform .1s;
+      letter-spacing: .2px
+    }
+
+    .trans-btn:hover:not(:disabled) {
+      opacity: .88;
+      transform: translateY(-1px)
+    }
+
+    .trans-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      transform: none
+    }
+
+    .tx-panel {
+      display: none;
+      background: var(--card2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 16px
+    }
+
+    .tx-panel.show {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    @media(max-width:540px) {
+      .tx-panel.show {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .tx-block label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 7px
+    }
+
+    .tx-text {
+      font-size: 0.83rem;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 70px
+    }
+
+    .tx-text.ml {
+      font-family: 'Noto Serif Malayalam', serif;
+      font-size: 0.95rem
+    }
+
+    .popup-wrap {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(0, 0, 0, .78);
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .popup-wrap.open {
+      display: flex
+    }
+
+    .popup {
+      background: var(--card);
+      border: 0.5px solid var(--border2);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 400px;
+      padding: 28px 28px 24px
+    }
+
+    .popup-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 3px
+    }
+
+    .popup-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 22px
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .s-item {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .s-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 0.5px solid var(--border2);
+      background: var(--card2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all .3s
+    }
+
+    .s-dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0a0a0f;
+      animation: blink 1s infinite
+    }
+
+    .s-dot.done {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #001a14
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .5
+      }
+    }
+
+    .s-lbl {
+      font-size: 0.83rem;
+      color: var(--muted);
+      transition: color .3s
+    }
+
+    .s-lbl.active {
+      color: var(--text)
+    }
+
+    .p-error {
+      display: none;
+      margin-top: 16px;
+      background: rgba(230, 57, 70, .08);
+      border: 0.5px solid rgba(230, 57, 70, .3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      color: var(--red)
+    }
+
+    .p-error.show {
+      display: block
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--card2);
+      border-radius: 3px
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-logo">Vaak<span>Mitra</span></div>
+    <div class="nav-links">
+      <a class="active">Home</a><a>Movies</a><a>Series</a><a>Malayalam</a>
+    </div>
+    <div class="search-wrap">
+      <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <input type="text" id="search-input" placeholder="Search movies, genres..." />
+    </div>
+    <div class="lang-pill">EN <b>→</b> <b>മലയാളം</b></div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-fade"></div>
+    <div class="hero-body">
+      <div class="hero-badge">✦ AI-Powered Dubbing</div>
+      <div class="hero-title">Watch in<br>your language</div>
+      <div class="hero-sub">One click to translate any English video into Malayalam with real-time AI dubbing and
+        transcript.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-hdr">
+      <span class="sec-title">Your Library</span>
+      <span class="sec-count" id="count-lbl">loading…</span>
+    </div>
+    <div class="filter-row">
+      <button class="f-btn on" onclick="setFilter('all',this)">All</button>
+      <button class="f-btn" onclick="setFilter('translated',this)">Translated</button>
+      <button class="f-btn" onclick="setFilter('pending',this)">Not yet translated</button>
+    </div>
+    <div id="movie-grid"></div>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal-wrap" id="modal-wrap" onclick="bgClose(event)">
+    <div class="modal" id="modal">
+      <button class="m-close" onclick="closeModal()">✕</button>
+      <div class="player-sec">
+        <video id="player" preload="metadata"></video>
+        <div class="p-controls">
+          <div class="prog-row">
+            <span class="time-lbl" id="time-lbl">0:00 / 0:00</span>
+            <input type="range" id="prog-bar" min="0" max="100" value="0" step="0.1" />
+          </div>
+          <div class="btns-row">
+            <button class="c-btn" id="play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" id="play-icon">
+                <polygon points="5,3 19,12 5,21" />
+              </svg>
+            </button>
+            <button class="c-btn" title="-10s" onclick="skip(-10)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1 0 .49-3" />
+              </svg>
+            </button>
+            <button class="c-btn" title="+10s" onclick="skip(10)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-.49-3" />
+              </svg>
+            </button>
+            <div class="vol-row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
+              <input type="range" id="vol-range" min="0" max="1" step="0.02" value="1" />
+            </div>
+            <div class="ver-row">
+              <button class="v-btn act" id="btn-orig" onclick="switchVer('orig')">▶ English</button>
+              <button class="v-btn" id="btn-trans" onclick="switchVer('trans')" disabled>🌐 Malayalam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="m-hdr">
+          <div class="m-hdr-thumb" id="modal-thumb"></div>
+          <div>
+            <div class="modal-title" id="modal-title"></div>
+            <div class="modal-meta" id="modal-meta"></div>
+          </div>
+        </div>
+        <div class="modal-desc" id="modal-desc"></div>
+        <button class="trans-btn" id="trans-btn" onclick="startTranslation()">✦ Translate to Malayalam</button>
+        <div class="tx-panel" id="tx-panel">
+          <div class="tx-block"><label>English transcript</label>
+            <div class="tx-text" id="tx-en"></div>
+          </div>
+          <div class="tx-block"><label>Malayalam translation</label>
+            <div class="tx-text ml" id="tx-ml"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS POPUP -->
+  <div class="popup-wrap" id="popup-wrap">
+    <div class="popup">
+      <div class="popup-title">Translating to Malayalam</div>
+      <div class="popup-sub">Please wait — takes about 30–60 seconds</div>
+      <div class="steps">
+        <div class="s-item"><span class="s-dot" id="d1">1</span><span class="s-lbl" id="l1">Extracting audio from
+            video</span></div>
+        <div class="s-item"><span class="s-dot" id="d2">2</span><span class="s-lbl" id="l2">Transcribing English
+            speech</span></div>
+        <div class="s-item"><span class="s-dot" id="d3">3</span><span class="s-lbl" id="l3">Translating to
+            Malayalam</span></div>
+        <div class="s-item"><span class="s-dot" id="d4">4</span><span class="s-lbl" id="l4">Generating Malayalam
+            voice</span></div>
+        <div class="s-item"><span class="s-dot" id="d5">5</span><span class="s-lbl" id="l5">Composing final video</span>
+        </div>
+      </div>
+      <div class="p-error" id="p-error"></div>
+    </div>
+  </div>
+
+  <script>
+    const API = 'http://localhost:5000';
+    const player = document.getElementById('player');
+    const progBar = document.getElementById('prog-bar');
+    const timeLbl = document.getElementById('time-lbl');
+    const volRange = document.getElementById('vol-range');
+
+    let movies = [], activeMovie = null, origSrc = null, transSrc = null, curVer = 'orig', filterMode = 'all';
+
+    /* ─── LIBRARY ─────────────────────────────────────────── */
+    async function loadLibrary() {
+      try {
+        const r = await fetch(`${API}/library`);
+        const data = await r.json();
+        movies = data.videos || [];
+      } catch (e) {
+        movies = [];
+        document.getElementById('count-lbl').textContent = 'Backend offline — start app.py';
+      }
+      renderGrid();
+    }
+
+    /* ─── RENDER ─────────────────────────────────────────── */
+    const BG_PALETTES = ['#12102a', '#0f1a12', '#1a100f', '#0f1520', '#1a0f1a', '#101a18', '#1a1508', '#0a151a'];
+    function thumbBg(id) { let h = 0; for (let c of id) h = (h << 5) - h + c.charCodeAt(0); return BG_PALETTES[Math.abs(h) % BG_PALETTES.length] }
+    function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML }
+
+    function renderGrid() {
+      const q = document.getElementById('search-input').value.toLowerCase().trim();
+      const list = movies.filter(m => {
+        if (filterMode === 'translated' && !m.hasTranslation) return false;
+        if (filterMode === 'pending' && m.hasTranslation) return false;
+        if (q && !m.title.toLowerCase().includes(q) && !(m.genre || '').toLowerCase().includes(q)) return false;
+        return true;
+      });
+      document.getElementById('count-lbl').textContent = list.length + ' video' + (list.length !== 1 ? 's' : '');
+      const grid = document.getElementById('movie-grid');
+      if (!list.length) { grid.innerHTML = '<div class="no-results">No videos found. Add videos via the backend <code>/add_video</code> API.</div>'; return; }
+      grid.innerHTML = list.map(m => `
+    <div class="m-card" onclick="openMovie('${esc(m.id)}')">
+      <div class="m-thumb" style="background:${thumbBg(m.id)}">
+        <span style="font-size:3.8rem">${esc(m.thumb || '🎬')}</span>
+        ${m.hasTranslation ? '<span class="ml-badge">ML</span>' : ''}
+      </div>
+      <div class="m-info">
+        <div class="m-title" title="${esc(m.title)}">${esc(m.title)}</div>
+        <div class="m-meta">
+          <span class="m-genre">${esc(m.genre || '')}</span>
+          <span class="m-dot"></span>
+          <span class="m-year">${esc(m.year || '')}</span>
+        </div>
+      </div>
+    </div>`).join('');
+    }
+
+    document.getElementById('search-input').addEventListener('input', renderGrid);
+    function setFilter(mode, btn) { filterMode = mode; document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on')); btn.classList.add('on'); renderGrid() }
+
+    /* ─── OPEN MODAL ─────────────────────────────────────── */
+    function openMovie(id) {
+      activeMovie = movies.find(m => m.id === id);
+      if (!activeMovie) return;
+      origSrc = activeMovie.videoPath ? `${API}/video/${activeMovie.videoPath}` : null;
+      transSrc = activeMovie.translatedPath ? `${API}/video/${activeMovie.translatedPath}` : null;
+      curVer = 'orig';
+
+      document.getElementById('modal-title').textContent = activeMovie.title;
+      document.getElementById('modal-thumb').textContent = activeMovie.thumb || '🎬';
+      document.getElementById('modal-thumb').style.background = thumbBg(activeMovie.id);
+      document.getElementById('modal-desc').textContent = activeMovie.desc || '';
+      document.getElementById('modal-meta').innerHTML =
+        `<span><b>${esc(activeMovie.genre || '')}</b></span><span>${esc(activeMovie.year || '')}</span>${activeMovie.duration ? `<span>${esc(activeMovie.duration)}</span>` : ''}`;
+
+      const txPanel = document.getElementById('tx-panel');
+      const transBtn = document.getElementById('trans-btn');
+      const btnTrans = document.getElementById('btn-trans');
+
+      if (activeMovie.hasTranslation && transSrc) {
+        txPanel.classList.add('show');
+        document.getElementById('tx-en').textContent = activeMovie.englishText || '';
+        document.getElementById('tx-ml').textContent = activeMovie.malayalamText || '';
+        btnTrans.disabled = false;
+        transBtn.textContent = '↺ Re-translate to Malayalam';
+      } else {
+        txPanel.classList.remove('show');
+        btnTrans.disabled = true;
+        transBtn.textContent = '✦ Translate to Malayalam';
+      }
+      transBtn.disabled = false;
+
+      if (origSrc) { player.src = origSrc; player.load(); } else { player.src = ''; }
+      document.getElementById('btn-orig').classList.add('act');
+      document.getElementById('btn-trans').classList.remove('act');
+      document.getElementById('modal-wrap').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function bgClose(e) { if (e.target === document.getElementById('modal-wrap')) closeModal(); }
+    function closeModal() { player.pause(); player.src = ''; document.getElementById('modal-wrap').classList.remove('open'); document.body.style.overflow = ''; }
+
+    /* ─── PLAYER ─────────────────────────────────────────── */
+    const PLAY_SVG = '<polygon points="5,3 19,12 5,21"/>';
+    const PAUSE_SVG = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    document.getElementById('play-btn').addEventListener('click', () => { if (!player.src) return; player.paused ? player.play() : player.pause(); });
+    player.addEventListener('play', () => { document.getElementById('play-icon').innerHTML = PAUSE_SVG });
+    player.addEventListener('pause', () => { document.getElementById('play-icon').innerHTML = PLAY_SVG });
+    player.addEventListener('ended', () => { document.getElementById('play-icon').innerHTML = PLAY_SVG });
+    player.addEventListener('timeupdate', () => {
+      if (!player.duration) return;
+      progBar.value = player.currentTime / player.duration * 100;
+      timeLbl.textContent = fmt(player.currentTime) + ' / ' + fmt(player.duration);
+    });
+    progBar.addEventListener('input', () => { if (player.duration) player.currentTime = progBar.value / 100 * player.duration; });
+    volRange.addEventListener('input', () => { player.volume = volRange.value; });
+    function skip(s) { player.currentTime = Math.min(Math.max(0, player.currentTime + s), player.duration || 0); }
+    function fmt(s) { const m = Math.floor(s / 60), sec = Math.floor(s % 60); return m + ':' + String(sec).padStart(2, '0'); }
+
+    /* ─── VERSION SWITCH ─────────────────────────────────── */
+    function switchVer(ver) {
+      if (ver === curVer) return;
+      const src = ver === 'orig' ? origSrc : transSrc;
+      if (!src) return;
+      const t = player.currentTime, playing = !player.paused;
+      curVer = ver;
+      player.src = src; player.load();
+      player.addEventListener('loadedmetadata', function h() {
+        player.currentTime = t; if (playing) player.play();
+        player.removeEventListener('loadedmetadata', h);
+      });
+      document.getElementById('btn-orig').classList.toggle('act', ver === 'orig');
+      document.getElementById('btn-trans').classList.toggle('act', ver === 'trans');
+    }
+
+    /* ─── PROGRESS STEPS ─────────────────────────────────── */
+    function resetSteps() { for (let i = 1; i <= 5; i++) { const d = document.getElementById('d' + i), l = document.getElementById('l' + i); d.className = 's-dot'; d.textContent = i; l.className = 's-lbl'; } }
+    function stepActive(n) { const d = document.getElementById('d' + n), l = document.getElementById('l' + n); d.className = 's-dot active'; d.textContent = '…'; l.className = 's-lbl active'; }
+    function stepDone(n) { const d = document.getElementById('d' + n), l = document.getElementById('l' + n); d.className = 's-dot done'; d.textContent = '✓'; l.className = 's-lbl'; }
+
+    /* ─── TRANSLATE ──────────────────────────────────────── */
+    async function startTranslation() {
+      if (!activeMovie) return;
+      const transBtn = document.getElementById('trans-btn');
+      transBtn.disabled = true;
+      document.getElementById('p-error').classList.remove('show');
+      document.getElementById('popup-wrap').classList.add('open');
+      resetSteps(); stepActive(1);
+      let stepIdx = 0;
+      const timer = setInterval(() => { stepDone(stepIdx + 1); stepIdx++; if (stepIdx < 5) stepActive(stepIdx + 1); else clearInterval(timer); }, 1900);
+
+      try {
+        const res = await fetch(`${API}/translate/${activeMovie.id}`, { method: 'POST' });
+        clearInterval(timer);
+        if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Translation failed'); }
+        const data = await res.json();
+        for (let i = 1; i <= 5; i++)stepDone(i);
+
+        transSrc = `${API}/video/${data.translated_path}`;
+        activeMovie.hasTranslation = true;
+        activeMovie.translatedPath = data.translated_path;
+        activeMovie.englishText = data.english_text;
+        activeMovie.malayalamText = data.malayalam_text;
+
+        document.getElementById('btn-trans').disabled = false;
+        document.getElementById('tx-en').textContent = data.english_text;
+        document.getElementById('tx-ml').textContent = data.malayalam_text;
+        document.getElementById('tx-panel').classList.add('show');
+        transBtn.textContent = '↺ Re-translate to Malayalam';
+        transBtn.disabled = false;
+        renderGrid();
+
+        setTimeout(() => { document.getElementById('popup-wrap').classList.remove('open'); switchVer('trans'); }, 900);
+      } catch (e) {
+        clearInterval(timer);
+        const eb = document.getElementById('p-error');
+        eb.textContent = '⚠ ' + e.message; eb.classList.add('show');
+        transBtn.disabled = false;
+        setTimeout(() => document.getElementById('popup-wrap').classList.remove('open'), 3500);
+      }
+    }
+
+    loadLibrary();
+  </script>
+</body>
+
+</html>

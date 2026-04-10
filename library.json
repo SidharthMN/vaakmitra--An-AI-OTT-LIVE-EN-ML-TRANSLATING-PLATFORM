@@ -1,0 +1,18 @@
+{
+  "videos": [
+    {
+      "id": "video_01",
+      "title": "How to Self-Introduction",
+      "genre": "Documentary",
+      "year": "2024",
+      "thumb": "🎬",
+      "desc": "Teaches how to introduce yourself.",
+      "videoPath": "video_01.mp4",
+      "translatedPath": "video_01_translated.mp4",
+      "hasTranslation": true,
+      "englishText": "hello my name is Patrika spiritu I am 24 years old from the Philippines I have a bachelor's degree in Business Administration major in financial management and I have a t-shirt I am a bank employee for almost 4 years now I was at customer service for 2 years I love teaching kids and I am very excited to make a great impact in your company",
+      "malayalamText": "ഹലോ എൻ്റെ പേര് പത്രിക സ്പിരിതു ഫിലിപ്പീൻസിൽ നിന്നാണ് എനിക്ക് 24 വയസ്സ്, എനിക്ക് ഫിനാൻഷ്യൽ മാനേജ്‌മെൻ്റിൽ ബിസിനസ് അഡ്മിനിസ്‌ട്രേഷനിൽ ബിരുദമുണ്ട്, എനിക്ക് ഒരു ടി-ഷർട്ട് ഉണ്ട്, ഏകദേശം 4 വർഷമായി ഞാൻ ഒരു ബാങ്ക് ജീവനക്കാരനാണ്, ഇപ്പോൾ ഞാൻ 2 വർഷമായി കസ്റ്റമർ സർവീസിലായിരുന്നു, എനിക്ക് കുട്ടികളെ പഠിപ്പിക്കുന്നത് ഇഷ്ടമാണ്, നിങ്ങളുടെ കമ്പനിയിൽ മികച്ച സ്വാധീനം ചെലുത്താൻ ഞാൻ വളരെ ആവേശത്തിലാണ്",
+      "duration": ""
+    }
+  ]
+}
