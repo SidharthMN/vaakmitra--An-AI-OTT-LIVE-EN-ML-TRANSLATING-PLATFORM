@@ -15,7 +15,7 @@ VaakMitra is an intelligent video processing platform that automates the transla
 - **Frontend:** HTML5, CSS3 (Modern Classy UI), JavaScript
 
 ## 🛠️ Setup
-1. Clone the repository.
+1. Clone the repository / Download ZIP File.
 2. Install FFmpeg on your system.
 3. Create a virtual environment: `python -m venv .venv`
 4. Install dependencies: `pip install -r requirements.txt`
